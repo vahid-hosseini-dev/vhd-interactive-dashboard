@@ -1,5 +1,6 @@
+import { LoginForm } from "@/src/components/ui";
 function Login() {
-  return <div>Login</div>;
+  return <LoginForm />;
 }
 
 export default Login;

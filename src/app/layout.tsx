@@ -1,7 +1,33 @@
-import { RootLayout } from "@/src/layout/root-layout";
-import "./globals.css";
-import { PropsWithChildren } from "react";
+import { Provider } from "@/src/components/ui/provider";
+import { Header, Footer } from "../components/layout";
+import { Container, Flex } from "@chakra-ui/react";
+import { Toaster } from "react-hot-toast";
 
-export default function Layout({ children }: PropsWithChildren) {
-  return <RootLayout>{children}</RootLayout>;
+export default function RootLayout(props: { children: React.ReactNode }) {
+  const { children } = props;
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <Provider>
+          <Header />
+          <Container
+            w="full"
+            maxW="1140px"
+            mx="auto"
+            bg="white"
+            p="0"
+            shadow="rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"
+          >
+            <Flex direction="column" minH="100vh" align="center">
+              <Flex flex="1" alignItems="center" mt="20">
+                {children}
+              </Flex>
+            </Flex>
+          </Container>
+          <Footer />
+        </Provider>
+        <Toaster />
+      </body>
+    </html>
+  );
 }
