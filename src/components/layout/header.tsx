@@ -1,26 +1,20 @@
-"use client";
-
-import { Flex, Box, Button, Separator, Text, Avatar } from "@chakra-ui/react";
-import { LogIn, LogOut } from "lucide-react";
-import Link from "next/link";
+import { cookies } from "next/headers";
+import { Flex, Box, Text, Avatar, Separator, Button } from "@chakra-ui/react";
 import { LuHouse } from "react-icons/lu";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/src/context/AuthContext";
+import Link from "next/link";
+import { LogoutButton } from "@/src/components/ui";
 
-export const Header = () => {
-  const { user, logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
-  };
+export const Header = async () => {
+  const cookieStore = await cookies();
+  const userCookie = cookieStore.get("user");
+  const user = userCookie ? JSON.parse(userCookie.value) : null;
 
   return (
     <Flex
       bg="blue.500"
       align="center"
-      justify="space-evenly"
+      justify="center"
+      gap="20"
       p="3"
       h="20"
       position="fixed"
@@ -47,6 +41,8 @@ export const Header = () => {
         <Link href="/games">Games</Link>
         <Separator orientation="vertical" height="4" />
         <Link href="/products">Products</Link>
+        {user && <Separator orientation="vertical" height="4" />}
+        {user && <Link href="/dashboard">Dashboard</Link>}
       </Box>
 
       {user ? (
@@ -57,21 +53,11 @@ export const Header = () => {
           </Avatar.Root>
           <Text color="white">{user.username}</Text>
 
-          <Button
-            size="sm"
-            px="4"
-            variant="solid"
-            colorPalette="red"
-            onClick={handleLogout}
-          >
-            <LogOut size={16} />
-            Logout
-          </Button>
+          <LogoutButton />
         </Flex>
       ) : (
         <Link href="/login">
-          <Button colorPalette="blue" size="sm" px="5" variant="solid">
-            <LogIn size={16} />
+          <Button colorPalette="blue" size="sm">
             Login
           </Button>
         </Link>

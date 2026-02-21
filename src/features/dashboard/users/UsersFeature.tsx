@@ -44,6 +44,7 @@ export function UsersFeature() {
 
           return (
             <UsersCard
+              id={id}
               key={id}
               firstName={firstName}
               lastName={lastName}

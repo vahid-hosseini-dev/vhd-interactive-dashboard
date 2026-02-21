@@ -1,4 +1,5 @@
 export type Users = {
+  id: number;
   key: number;
   firstName: string;
   lastName: string;
@@ -9,7 +10,6 @@ export type Users = {
   password: string;
   birthDate: string;
 };
-
 
 export type User = {
   username: string;

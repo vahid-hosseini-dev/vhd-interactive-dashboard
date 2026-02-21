@@ -10,7 +10,7 @@ async function getProducts() {
   return res.json();
 }
 
-async function ProductPage() {
+export async function HomeProductsFeature() {
   const data = await getProducts();
   console.log(data)
 
@@ -45,4 +45,3 @@ async function ProductPage() {
   );
 }
 
-export default ProductPage;

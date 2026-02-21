@@ -2,7 +2,8 @@
 
 import { Dashboard } from "@/src/types/dashboard.types";
 import { Button, Flex, Tabs, Box } from "@chakra-ui/react";
-import { LogOut, LucideUser, ShoppingBag } from "lucide-react";
+import { LogOut, LucideUser, ShoppingBag , Settings } from "lucide-react";
+
 
 export const DashboardTabs = ({ activeTab, setActiveTab }: Dashboard) => {
   return (
@@ -62,7 +63,7 @@ export const DashboardTabs = ({ activeTab, setActiveTab }: Dashboard) => {
         color="black"
         fontSize="sm"
       >
-        <LogOut /> Logout
+          <Settings /> Setting
       </Button>
     </Flex>
   );

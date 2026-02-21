@@ -5,3 +5,4 @@ export * from "@/src/components/ui/provider";
 export * from "@/src/components/ui/search";
 export * from "@/src/components/ui/dashboard-tabs";
 export * from "@/src/components/ui/users-card";
+export * from "@/src/components/ui/logout-button";

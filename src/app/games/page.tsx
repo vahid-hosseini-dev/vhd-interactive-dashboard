@@ -1,13 +1,21 @@
-async function getGamesList() {
-  const res = await fetch("https://api.rawg.io/api/games");
-  return res.json();
-}
+import { games } from "@/src/types/games.type";
+import { Box } from "@chakra-ui/react";
 
-function Game() {
-  const data = getGamesList();
+export default async function GamePage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/games`);
+
+  const data = await res.json();
   console.log(data);
 
-  return data;
-}
+  if (!data.results || !data.results.length) {
+    return <Box>No games found</Box>;
+  }
 
-export default Game;
+  return (
+    <div>
+      {data.results.map((game: games) => (
+        <div key={game.id}>{game.name}</div>
+      ))}
+    </div>
+  );
+}

@@ -15,11 +15,9 @@ import {
 import { LuKeyRound, LuUserRound } from "react-icons/lu";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/src/context/AuthContext";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const { login } = useAuth();
 
   const {
     register,
@@ -45,10 +43,11 @@ export const LoginForm = () => {
         return;
       }
 
-      login({ username: result.username, avatar: result.avatar });
-
       toast.success("Login successful!");
-      router.push("/dashboard");
+
+      router.replace("/dashboard");
+
+      router.refresh();
     } catch (err: unknown) {
       if (err instanceof Error) toast.error(err.message);
       else toast.error("Login failed. Please try again.");
