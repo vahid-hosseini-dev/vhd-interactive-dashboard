@@ -10,13 +10,17 @@ import {
   Input,
   InputGroup,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { LuKeyRound, LuUserRound } from "react-icons/lu";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/src/context/AuthContext";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -27,8 +31,9 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: LoginFormInputs) => {
     try {
-      const res = await fetch("https://dummyjson.com/user/login", {
+      const res = await fetch("/api/login", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
@@ -40,14 +45,13 @@ export const LoginForm = () => {
         return;
       }
 
+      login({ username: result.username, avatar: result.avatar });
+
       toast.success("Login successful!");
       router.push("/dashboard");
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast.error(err.message);
-      } else {
-        toast.error("Login failed. Please try again.");
-      }
+      if (err instanceof Error) toast.error(err.message);
+      else toast.error("Login failed. Please try again.");
     }
   };
 
@@ -68,7 +72,9 @@ export const LoginForm = () => {
                   {...register("username")}
                 />
               </InputGroup>
-              <Field.ErrorText>{errors.username?.message}</Field.ErrorText>
+              {errors.username && (
+                <Text color="red.500">{errors.username.message}</Text>
+              )}
             </Field.Root>
 
             <Field.Root>
@@ -82,7 +88,9 @@ export const LoginForm = () => {
                   {...register("password")}
                 />
               </InputGroup>
-              <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+              {errors.password && (
+                <Text color="red.500">{errors.password.message}</Text>
+              )}
             </Field.Root>
 
             <Button type="submit" variant="solid" loading={isSubmitting}>

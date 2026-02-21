@@ -1,35 +1,34 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import type { Product } from "@/src/types/products.types";
+import { Users } from "@/src/types/users.types";
 
-export function useProducts() {
-  const [products, setProducts] = useState<Product[]>([]);
+export function useUsers() {
+  const [users, setUsers] = useState<Users[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    async function fetchProducts() {
+    async function fetchUsers() {
       try {
-        const res = await fetch("https://dummyjson.com/products");
+        const res = await fetch("https://dummyjson.com/users");
         const data = await res.json();
-        if (isMounted) setProducts(data.products);
+        if (isMounted) setUsers(data.users);
       } catch (err) {
-        if (isMounted) setError("Failed to fetch products");
         console.error(err);
+        if (isMounted) setError("Failed to fetch users");
       } finally {
         if (isMounted) setLoading(false);
       }
     }
 
-    fetchProducts();
+    fetchUsers();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
-  return { products, loading, error };
+  return { users, loading, error };
 }

@@ -1,11 +1,7 @@
-import { ProductFeature } from "@/src/features";
+import { DashboardFeature } from "@/src/features";
 
 function Dashboard() {
-  return (
-    <div>
-      <ProductFeature />
-    </div>
-  );
+  return <DashboardFeature />;
 }
 
 export default Dashboard;
