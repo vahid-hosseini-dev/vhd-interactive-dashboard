@@ -4,9 +4,9 @@ import { GameCard } from "@/src/components/ui";
 
 const API_KEY = process.env.RAWG_API_KEY;
 
-async function getGames() {
+async function getGames(search?: string) {
   const res = await fetch(
-    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=12`,
+    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=12${search ? `&search=${search}` : ""}`,
     {
       cache: "no-store",
     },
@@ -39,6 +39,7 @@ async function GamesPage() {
 
           return (
             <GameCard
+              id={id}
               key={id}
               image={background_image}
               alt={name}
