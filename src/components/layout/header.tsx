@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { Flex, Box, Text, Avatar, Separator, Button } from "@chakra-ui/react";
 import { LuHouse } from "react-icons/lu";
 import Link from "next/link";
-import { LogoutButton } from "@/src/components/ui";
+import { LogoutButton, LoginButton } from "@/src/components/ui";
 
 export const Header = async () => {
   const cookieStore = await cookies();
@@ -57,9 +57,7 @@ export const Header = async () => {
         </Flex>
       ) : (
         <Link href="/login">
-          <Button colorPalette="blue" size="sm">
-            Login
-          </Button>
+          <LoginButton />
         </Link>
       )}
     </Flex>

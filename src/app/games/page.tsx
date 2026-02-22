@@ -6,7 +6,7 @@ const API_KEY = process.env.RAWG_API_KEY;
 
 async function getGames() {
   const res = await fetch(
-    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=10`,
+    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=12`,
     {
       cache: "no-store",
     },
@@ -21,6 +21,8 @@ async function getGames() {
 
 async function GamesPage() {
   const data = await getGames();
+
+  console.log(data);
 
   return (
     <Container p="5">

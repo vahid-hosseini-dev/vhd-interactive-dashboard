@@ -3,7 +3,7 @@ import type { Product } from "@/src/types/products.types";
 import { ProductCard } from "@/src/components/ui";
 
 async function getProducts() {
-  const res = await fetch("https://dummyjson.com/products", {
+  const res = await fetch("https://dummyjson.com/products/", {
     cache: "no-store",
   });
 
@@ -12,7 +12,7 @@ async function getProducts() {
 
 export async function HomeProductsFeature() {
   const data = await getProducts();
-  console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -44,4 +44,3 @@ export async function HomeProductsFeature() {
     </>
   );
 }
-
