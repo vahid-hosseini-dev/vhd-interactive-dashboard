@@ -1,21 +1,53 @@
-import { games } from "@/src/types/games.type";
-import { Box } from "@chakra-ui/react";
+import { Grid, Container } from "@chakra-ui/react";
+import type { Games } from "@/src/types/games.type";
+import { GameCard } from "@/src/components/ui";
 
-export default async function GamePage() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/games`);
+const API_KEY = process.env.RAWG_API_KEY;
 
-  const data = await res.json();
-  console.log(data);
+async function getGames() {
+  const res = await fetch(
+    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=10`,
+    {
+      cache: "no-store",
+    },
+  );
 
-  if (!data.results || !data.results.length) {
-    return <Box>No games found</Box>;
+  if (!res.ok) {
+    throw new Error("Failed to fetch games");
   }
 
+  return res.json();
+}
+
+async function GamesPage() {
+  const data = await getGames();
+
   return (
-    <div>
-      {data.results.map((game: games) => (
-        <div key={game.id}>{game.name}</div>
-      ))}
-    </div>
+    <Container p="5">
+      <Grid
+        templateColumns={{
+          base: "1fr",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        }}
+        gap={6}
+      >
+        {data.results.map((game: Games) => {
+          const { id, name, background_image, released, rating } = game;
+
+          return (
+            <GameCard
+              key={id}
+              image={background_image}
+              alt={name}
+              title={name}
+              description={`Released: ${released}, Rating: ${rating}`}
+            />
+          );
+        })}
+      </Grid>
+    </Container>
   );
 }
+
+export default GamesPage;
