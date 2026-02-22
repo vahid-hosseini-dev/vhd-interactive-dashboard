@@ -3,6 +3,7 @@ import { Flex, Box, Text, Avatar, Separator, Button } from "@chakra-ui/react";
 import { LuHouse } from "react-icons/lu";
 import Link from "next/link";
 import { LogoutButton, LoginButton } from "@/src/components/ui";
+import Image from "next/image";
 
 export const Header = async () => {
   const cookieStore = await cookies();
@@ -23,7 +24,7 @@ export const Header = async () => {
       opacity="0.9"
     >
       <Link href="/">
-        <LuHouse size="32" color="white" />
+        <Image src="/png/main-logo.png" width={100} height={100} alt="Logo" />
       </Link>
 
       <Box

@@ -13,3 +13,4 @@ export * from "@/src/components/ui/game-card";
 export * from "@/src/components/ui/dashboard-tabs";
 export * from "@/src/components/ui/logout-button";
 export * from "@/src/components/ui/login-button";
+export * from "@/src/components/ui/genre-button";

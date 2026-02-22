@@ -15,3 +15,7 @@ export type GameCardProps = {
   description?: string;
 };
 
+export type GamesListProps = {
+  initialSearch?: string;
+  initialGenre?: string;
+};

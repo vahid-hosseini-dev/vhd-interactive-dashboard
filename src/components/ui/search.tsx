@@ -4,12 +4,9 @@ import { Input, InputGroup } from "@chakra-ui/react";
 import { LuSearch } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { SearchProps } from "@/src/types/search.type";
 
-interface SearchProps {
-  initialValue?: string;
-}
-
-export function Search({ initialValue = "" }: SearchProps) {
+export function Search({ initialValue = "", initialGenre = "" }: SearchProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [value, setValue] = useState(initialValue);
@@ -17,15 +14,15 @@ export function Search({ initialValue = "" }: SearchProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (value !== searchParams.get("search")) {
-        router.push(`/games?search=${value}`);
+        router.push(`/games?search=${value}&genre=${initialGenre}`);
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, [value, router, searchParams]);
+  }, [value, router, searchParams, initialGenre]);
 
   return (
     <InputGroup
-      w="full"
+      minW="full"
       mb={5}
       startElement={<LuSearch size={20} color="gray.500" />}
     >
