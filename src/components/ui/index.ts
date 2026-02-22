@@ -1,4 +1,5 @@
 export * from "@/src/components/ui/provider";
+export * from "@/src/components/ui/game-list";
 
 export * from "@/src/components/ui/color-mode";
 export * from "@/src/components/ui/search";

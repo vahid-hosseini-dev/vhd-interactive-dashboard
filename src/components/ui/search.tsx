@@ -1,28 +1,39 @@
 "use client";
 
 import { Input, InputGroup } from "@chakra-ui/react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 import { LuSearch } from "react-icons/lu";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export function Search() {
+interface SearchProps {
+  initialValue?: string;
+}
+
+export function Search({ initialValue = "" }: SearchProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [value, setValue] = useState(searchParams.get("search") || "");
+  const [value, setValue] = useState(initialValue);
 
-  const handleSearch = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router.push(`/games?search=${value}`);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (value !== searchParams.get("search")) {
+        router.push(`/games?search=${value}`);
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [value, router, searchParams]);
+
   return (
-    <form onSubmit={handleSearch}>
-      <InputGroup flex="1" startElement={<LuSearch />}>
-        <Input
-          placeholder="Search games..."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </InputGroup>
-    </form>
+    <InputGroup
+      w="full"
+      mb={5}
+      startElement={<LuSearch size={20} color="gray.500" />}
+    >
+      <Input
+        placeholder="Search games..."
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </InputGroup>
   );
 }

@@ -1,56 +1,17 @@
-import { Grid, Container } from "@chakra-ui/react";
-import type { Games } from "@/src/types/games.type";
-import { GameCard } from "@/src/components/ui";
+import { Flex } from "@chakra-ui/react";
+import { Search, GamesList } from "@/src/components/ui";
 
-const API_KEY = process.env.RAWG_API_KEY;
-
-async function getGames(search?: string) {
-  const res = await fetch(
-    `https://api.rawg.io/api/games?key=${API_KEY}&page_size=12${search ? `&search=${search}` : ""}`,
-    {
-      cache: "no-store",
-    },
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch games");
-  }
-
-  return res.json();
-}
-
-async function GamesPage() {
-  const data = await getGames();
-
-  console.log(data);
-
+export default async function GamesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ search?: string }>;
+}) {
+  const { search } = await searchParams;
+  const initialSearch = search || "";
   return (
-    <Container p="5">
-      <Grid
-        templateColumns={{
-          base: "1fr",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
-        }}
-        gap={6}
-      >
-        {data.results.map((game: Games) => {
-          const { id, name, background_image, released, rating } = game;
-
-          return (
-            <GameCard
-              id={id}
-              key={id}
-              image={background_image}
-              alt={name}
-              title={name}
-              description={`Released: ${released}, Rating: ${rating}`}
-            />
-          );
-        })}
-      </Grid>
-    </Container>
+    <Flex direction="column" w="full" p="5" my={5}>
+      <Search initialValue={initialSearch} />
+      <GamesList initialSearch={initialSearch} />
+    </Flex>
   );
 }
-
-export default GamesPage;
