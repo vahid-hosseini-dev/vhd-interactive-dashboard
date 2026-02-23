@@ -3,7 +3,7 @@
 import { Grid, Container } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { GameCard } from "@/src/components/ui";
-import type { Games } from "@/src/types/games.type";
+import type { Games } from "@/src/types";
 import { useSearchParams } from "next/navigation";
 
 const API_KEY = process.env.NEXT_PUBLIC_RAWG_API_KEY;

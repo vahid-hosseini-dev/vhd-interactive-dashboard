@@ -1,8 +1,10 @@
 export * from "@/src/components/ui/provider";
 export * from "@/src/components/ui/game-list";
+export * from "@/src/components/ui/product-list";
 
 export * from "@/src/components/ui/color-mode";
 export * from "@/src/components/ui/search";
+export * from "@/src/components/ui/drop-down-select";
 
 export * from "@/src/components/ui/login-form";
 

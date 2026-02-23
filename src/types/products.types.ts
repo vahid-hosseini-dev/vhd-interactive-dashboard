@@ -18,3 +18,7 @@ export type ProductCardProps = {
   description: string;
   price: number;
 };
+
+export type ProductsPageProps = {
+  products: Product[];
+};

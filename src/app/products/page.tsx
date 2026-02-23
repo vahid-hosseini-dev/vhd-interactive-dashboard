@@ -1,8 +1,7 @@
-import { Grid, Container } from "@chakra-ui/react";
-import type { Product } from "@/src/types/products.types";
-import { ProductCard } from "@/src/components/ui";
+import type { Product , Item } from "@/src/types";
+import { ProductList } from "@/src/components/ui";
 
-async function getProducts() {
+async function getProducts(): Promise<{ products: Product[] }> {
   const res = await fetch("https://dummyjson.com/products", {
     cache: "no-store",
   });
@@ -10,39 +9,26 @@ async function getProducts() {
   return res.json();
 }
 
-async function ProductPage() {
+export default async function ProductPage() {
   const data = await getProducts();
-  console.log(data)
 
-  return (
-    <>
-      <Container p="5">
-        <Grid
-          templateColumns={{
-            base: "1fr",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-          }}
-          gap={6}
-        >
-          {data.products.map((product: Product) => {
-            const { id, title, description, price, images } = product;
-
-            return (
-              <ProductCard
-                key={id}
-                image={images[0]}
-                alt={title}
-                title={title}
-                description={description}
-                price={price}
-              />
-            );
-          })}
-        </Grid>
-      </Container>
-    </>
+  const categories = Array.from(
+    new Set(data.products.map((p: Product) => p.category)),
   );
-}
 
-export default ProductPage;
+  const items: Item[] = [];
+
+  categories.forEach((cat) => {
+    data.products
+      .filter((p: Product) => p.category === cat)
+      .forEach((p: Product) => {
+        items.push({
+          label: p.title,
+          value: p.id.toString(),
+          group: cat,
+        });
+      });
+  });
+
+  return <ProductList products={data.products} items={items} />;
+}

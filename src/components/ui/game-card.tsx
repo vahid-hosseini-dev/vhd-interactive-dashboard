@@ -1,8 +1,14 @@
-import { GameCardProps } from "@/src/types/games.type";
+import { GameCardProps } from "@/src/types/games.types";
 import { Button, Card, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
-export const GameCard = ({id, image, alt, title, description }: GameCardProps) => {
+export const GameCard = ({
+  id,
+  image,
+  alt,
+  title,
+  description,
+}: GameCardProps) => {
   return (
     <Link href={`/games/${id}`}>
       <Card.Root maxW="sm" overflow="hidden">

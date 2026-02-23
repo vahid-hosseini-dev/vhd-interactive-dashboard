@@ -4,6 +4,9 @@ import Image from "next/image";
 export function HeroSection() {
   return (
     <Flex
+      border="2px solid"
+      borderColor="blue.500"
+      borderRadius="3xl"
       direction={{ base: "column", md: "row" }}
       align="center"
       justify="center"
@@ -12,8 +15,9 @@ export function HeroSection() {
       px={{ base: 5, md: 25 }}
       bg="gray.100"
       gap={{ base: 8, md: 9 }}
+      m={5}
     >
-      <Box flex="1" maxW={{ base: "full", md: "50%" }} pl={10}>
+      <Box flex="1" maxW={{ base: "full", md: "50%" }}>
         <Text as="h1" fontSize={{ base: "3xl", md: "5xl" }} fontWeight="bold">
           Welcome to Online Shop
         </Text>

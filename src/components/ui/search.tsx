@@ -4,7 +4,7 @@ import { Input, InputGroup } from "@chakra-ui/react";
 import { LuSearch } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { SearchProps } from "@/src/types/search.type";
+import { SearchProps } from "@/src/types/search.types";
 
 export function Search({ initialValue = "", initialGenre = "" }: SearchProps) {
   const router = useRouter();

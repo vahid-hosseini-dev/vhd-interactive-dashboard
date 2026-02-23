@@ -2,6 +2,7 @@ import { Provider } from "@/src/components/ui/provider";
 import { Header, Footer } from "../components/layout";
 import { Container, Flex } from "@chakra-ui/react";
 import { Toaster } from "react-hot-toast";
+import "./globals.css";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
