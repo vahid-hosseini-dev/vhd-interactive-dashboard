@@ -1,5 +1,10 @@
 # Interactive Dashboard in Online Shop
 
+## Live Demo
+
+You can check the live version of the dashboard here:  
+[Interactive Dashboard on Vercel](https://vhd-interactive-dashboard-b74mg8yev.vercel.app/)
+
 ## Project Overview
 
 This project is an interactive dashboard built with **Next.js**, **React**, **Tailwind CSS**, and **TypeScript**.  
@@ -13,6 +18,15 @@ It includes a **Login page** in the initial version and will include a registrat
 Form validation is implemented using **Zod**, and forms are handled via **React Hook Form**.
 
 After login, the user receives an **access token** and a **refresh token** with scheduled renewal and is redirected to the **Dashboard page**.
+
+---
+
+## Screenshots / Collages
+
+Here are two collages showing main dashboard pages:
+
+![Dashboard Collage 1](public/screenshots/001.png)
+![Dashboard Collage 2](public/screenshots/002.png)
 
 ---
 
