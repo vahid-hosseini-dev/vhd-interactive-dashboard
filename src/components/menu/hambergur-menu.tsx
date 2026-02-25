@@ -1,7 +1,15 @@
 "use client";
 
-import { Button, CloseButton, Drawer, Portal, Flex } from "@chakra-ui/react";
+import {
+  Button,
+  CloseButton,
+  Drawer,
+  Portal,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -25,14 +33,34 @@ export const HambergerMenu = () => {
         <Drawer.Positioner>
           <Drawer.Content dir="rtl">
             <Drawer.Header>
-              <Drawer.Title>Online Shop</Drawer.Title>
+              <Drawer.Title>
+                <Flex align="center" gap="2" w="full" mb="4">
+                  <Box>
+                    <Image
+                      src="/png/main-logo.png"
+                      alt="Online Shop"
+                      width={100}
+                      height={50}
+                    />
+                  </Box>
+                  Online Shop
+                </Flex>
+              </Drawer.Title>
             </Drawer.Header>
             <Drawer.Body>
               <Flex direction="column" gap="4" fontSize="lg">
-                <Link href="/">Home</Link>
-                <Link href="/dashboard">Dashboard</Link>
-                <Link href="/products">Products</Link>
-                <Link href="/games">Games</Link>
+                <Box onClick={() => setOpen(false)}>
+                  <Link href="/">Home</Link>
+                </Box>
+                <Box onClick={() => setOpen(false)}>
+                  <Link href="/dashboard">Dashboard</Link>
+                </Box>
+                <Box onClick={() => setOpen(false)}>
+                  <Link href="/products">Products</Link>
+                </Box>
+                <Box onClick={() => setOpen(false)}>
+                  <Link href="/games">Games</Link>
+                </Box>
               </Flex>
             </Drawer.Body>
             <Drawer.Footer></Drawer.Footer>

@@ -55,7 +55,14 @@ export const LoginForm = () => {
   };
 
   return (
-    <Card.Root maxW="sm" colorPalette="blue" size="md" h="sm" minW="md">
+    <Card.Root
+      w={{ base: "100%", md: "sm" }}
+      maxW="sm"
+      colorPalette="blue"
+      size="md"
+      h="sm"
+      minW={{ base: "0", md: "md" }}
+    >
       <Card.Header>
         <Card.Title>Login</Card.Title>
         <Card.Description>Fill in the form below to login</Card.Description>

@@ -1,11 +1,5 @@
 import { cookies } from "next/headers";
-import {
-  Flex,
-  Box,
-  Text,
-  Avatar,
-  Separator,
-} from "@chakra-ui/react";
+import { Flex, Box, Text, Avatar, Separator } from "@chakra-ui/react";
 import Link from "next/link";
 import { LogoutButton, LoginButton } from "@/src/components/ui";
 import Image from "next/image";
@@ -57,10 +51,12 @@ export const Header = async () => {
 
       {user ? (
         <Flex align="center" gap="3">
-          <Avatar.Root size="sm">
-            <Avatar.Image src={user.avatar} />
-            <Avatar.Fallback name={user.username} />
-          </Avatar.Root>
+          <Link href="/dashboard">
+            <Avatar.Root size="sm">
+              <Avatar.Image src={user.avatar} />
+              <Avatar.Fallback name={user.username} />
+            </Avatar.Root>
+          </Link>
           <Text color="white">{user.username}</Text>
 
           <LogoutButton />

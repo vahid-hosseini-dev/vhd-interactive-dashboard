@@ -2,12 +2,18 @@
 
 import { Dashboard } from "@/src/types/dashboard.types";
 import { Button, Flex, Tabs, Box } from "@chakra-ui/react";
-import { LogOut, LucideUser, ShoppingBag , Settings } from "lucide-react";
-
+import { LucideUser, ShoppingBag, Settings } from "lucide-react";
 
 export const DashboardTabs = ({ activeTab, setActiveTab }: Dashboard) => {
   return (
-    <Flex flexDir="column" justify="space-between" minH="700px" minW="250px">
+    <Flex
+      flexDir="column"
+      justify={{ base: "flex-start", md: "space-between" }}
+      px="10"
+      w="300px"
+      minH={{ base: "0", md: "700px" }}
+      flexShrink={0}
+    >
       <Box>
         <Box
           background="blue.500"
@@ -16,7 +22,7 @@ export const DashboardTabs = ({ activeTab, setActiveTab }: Dashboard) => {
           rounded="md"
           padding="4"
           color="white"
-          mt="5"
+          mt={{ base: 10}}
         >
           DASHBOARD
         </Box>
@@ -53,18 +59,19 @@ export const DashboardTabs = ({ activeTab, setActiveTab }: Dashboard) => {
           <Tabs.Content value="products"></Tabs.Content>
         </Tabs.Root>
       </Box>
-
-      <Button
-        colorPalette="blue"
-        mt="auto"
-        w="full"
-        px="5"
-        variant="surface"
-        color="black"
-        fontSize="sm"
-      >
+      <Box>
+        <Button
+          colorPalette="blue"
+          mt="10px"
+          w="full"
+          px="5"
+          variant="surface"
+          color="black"
+          fontSize="sm"
+        >
           <Settings /> Setting
-      </Button>
+        </Button>
+      </Box>
     </Flex>
   );
 };
