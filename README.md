@@ -3,7 +3,7 @@
 ## Live Demo
 
 You can check the live version of the dashboard here:  
-[Interactive Dashboard on Vercel](https://vhd-interactive-dashboard-b74mg8yev.vercel.app/)
+[Interactive Dashboard on Vercel](https://vhd-interactive-dashboard-fa8v5dd5j.vercel.app/)
 
 ## Project Overview
 
